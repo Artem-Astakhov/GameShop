@@ -1,0 +1,28 @@
+﻿@using GameShop.ViewsModels
+@model GamesViewCategory
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List</title>
+</head>
+<body>
+    <h2>Все игры</h2>
+    <h3>@Model.CurrentCategory</h3>
+    @{ 
+        foreach(var game in Model.GetGames)
+        {
+            <div>
+                <h2>Название: @game.Name</h2>
+                <p>Цена: @game.Prise.ToString("c")</p>
+            </div>
+        }
+    }
+</body>
+</html>

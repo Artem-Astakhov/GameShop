@@ -1,4 +1,5 @@
 ﻿using GameShop.Models;
+using GameShop.ViewsModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,11 @@ namespace GameShop.Controllers
         {
             db = context;
         }
-        public IActionResult Index()
+        public IActionResult List()
         {
-            return View(db.Categories.ToList());
+            GamesViewCategory obj = new GamesViewCategory(db);
+            obj.CurrentCategory = "Амери";
+            return View(obj);
         }
        
     }
