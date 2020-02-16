@@ -17,8 +17,10 @@ namespace GameShop.Controllers
         }
         public IActionResult List()
         {
+            ViewBag.Title = "Настольные игры";
             GamesViewCategory obj = new GamesViewCategory(db);
             obj.CurrentCategory = "Амери";
+            
             return View(obj);
         }
        

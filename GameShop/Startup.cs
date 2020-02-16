@@ -25,9 +25,14 @@ namespace GameShop
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<GameContext>(options => options.UseSqlServer(connection));
-            services.AddMvc();
-            
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => Cart.GetCart(sp));
+
+            services.AddMvc();
+
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
     
@@ -35,6 +40,7 @@ namespace GameShop
         {
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseStatusCodePages();            
             app.UseRouting();
             app.UseEndpoints(endpoint =>
