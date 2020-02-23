@@ -19,7 +19,7 @@ namespace GameShop.Controllers
             this.cart = cart;
         }
 
-        public ActionResult Index()
+        public IActionResult Index()
         {
             var item = cart.GetItems();
             cart.CartItems = item;

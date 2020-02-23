@@ -47,7 +47,11 @@ namespace GameShop
             {
                 endpoint.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Game}/{action=List}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoint.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Game}/{action=GameCategory}/{category?}");
             });
         }
     }

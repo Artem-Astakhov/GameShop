@@ -1,0 +1,10 @@
+﻿<h2>Все игры</h2>
+<h3>@Model.CurrentCategory</h3>
+<div class="row mt-5 mb-2">
+    @{
+        foreach (Game game in Model.GameCategory)
+        {
+            @Html.Partial("AllGame", game)
+        }
+    }
+</div>

@@ -14,6 +14,7 @@ namespace GameShop.ViewsModels
             this.context = context;
             GetGames = context.Games.ToList();
         }
+        public List <Game> GameCategory { get; set; }
         public List<Game> GetGames { get; set; }
         public string CurrentCategory { get; set; }
     }
