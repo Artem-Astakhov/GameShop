@@ -9,5 +9,8 @@ namespace GameShop.ViewsModels
     public class CartViewModel
     {
         public Cart Cart { get; set; }
+
+
     }
+    
 }

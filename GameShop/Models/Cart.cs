@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using GameShop.ViewsModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -10,15 +11,15 @@ namespace GameShop.Models
 {
     public class Cart
     {
-        GameContext context;
-
+        readonly GameContext context;
+        CartViewModel CartViewModel = new CartViewModel();
         public Cart(GameContext context)
         {
-            this.context = context;
+            this.context = context;            
         }
         public string CartId { get; set; }
 
-        public List<CartItem> CartItems { get; set; }
+        public List<CartItem> CartItems = new List<CartItem>();
 
         public static Cart GetCart(IServiceProvider service)
         {
@@ -45,7 +46,9 @@ namespace GameShop.Models
 
         public List<CartItem> GetItems()
         {
-            return context.CartItems.Where(i => i.CartId == CartId).Include(g => g.Game).ToList();
+            return context.CartItems.Where(i => i.CartId == CartId).Include(i=>i.Game).ToList();
         }
+
+        
     }
 }

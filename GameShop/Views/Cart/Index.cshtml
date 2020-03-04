@@ -3,11 +3,11 @@
 <div class=" container">
     @foreach(var element in Model.Cart.CartItems)
     {
-        <div class="alert alert-warning" mt-3>
-            <b>Игра:</b> @element.Game.Name<br />
-            <b>Цена:</b> @element.Game.Prise<br />
-        </div>
+    <div class="alert alert-warning" mt-3>
+        <b>Игра:</b> @element.Game.Name<br />
+        <b>Цена:</b> @element.Game.Prise<br />
+    </div>
     }
     <hr />
-    <div class="btn btn-danger" asp-controller ="Order">Оплатить</div>
+    <a class="btn btn-danger mb-5" asp-controller ="Order" asp-action="Checkout">Оплатить</a>
 </div>

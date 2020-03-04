@@ -1,6 +1,8 @@
 ﻿using GameShop.Models;
 using GameShop.ViewsModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +12,8 @@ namespace GameShop.Controllers
 {
     public class CartController:Controller
     {
-        GameContext context;
-        Cart cart;
+        readonly GameContext context;
+        readonly Cart cart;
 
         public CartController(GameContext context, Cart cart)
         {
@@ -29,7 +31,10 @@ namespace GameShop.Controllers
                 Cart = cart
             };
 
-            return View(obj);
+            RedirectToAction("Remove", obj);
+
+            if(obj==null)return View();
+            else return View(obj);
         }
 
         public RedirectToActionResult AddToCart(int id)
@@ -43,5 +48,7 @@ namespace GameShop.Controllers
 
             return RedirectToAction("Index");
         }
+
+
     }
 }
