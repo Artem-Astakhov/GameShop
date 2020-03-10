@@ -49,6 +49,10 @@ namespace GameShop.Models
             return context.CartItems.Where(i => i.CartId == CartId).Include(i=>i.Game).ToList();
         }
 
-        
+        public void Clear()
+        {
+            CartItems.Clear();
+            CartItems = null;
+        }
     }
 }

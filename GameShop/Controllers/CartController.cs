@@ -31,10 +31,7 @@ namespace GameShop.Controllers
                 Cart = cart
             };
 
-            RedirectToAction("Remove", obj);
-
-            if(obj==null)return View();
-            else return View(obj);
+            return View(obj);
         }
 
         public RedirectToActionResult AddToCart(int id)

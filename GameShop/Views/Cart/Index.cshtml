@@ -1,13 +1,14 @@
 ﻿@model CartViewModel
 
 <div class=" container">
-    @foreach(var element in Model.Cart.CartItems)
-    {
-    <div class="alert alert-warning" mt-3>
-        <b>Игра:</b> @element.Game.Name<br />
-        <b>Цена:</b> @element.Game.Prise<br />
-    </div>
-    }
-    <hr />
-    <a class="btn btn-danger mb-5" asp-controller ="Order" asp-action="Checkout">Оплатить</a>
+
+        @foreach (var element in Model.Cart.CartItems)
+        {
+            <div class="alert alert-warning" mt-3>
+                <b>Игра:</b> @element.Game.Name<br />
+                <b>Цена:</b> @element.Game.Prise<br />
+            </div>
+        }
+            <hr />
+            <a class="btn btn-danger mb-5" asp-controller ="Order" asp-action="Checkout">Оплатить</a>
 </div>

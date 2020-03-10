@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace GameShop
 {
@@ -29,6 +30,9 @@ namespace GameShop
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sp => Cart.GetCart(sp));
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(option => option.LoginPath = new PathString("/Account/Login"));
+
             services.AddMvc();
 
             services.AddMemoryCache();
@@ -43,6 +47,8 @@ namespace GameShop
             app.UseSession();
             app.UseStatusCodePages();            
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoint =>
             {
                 endpoint.MapControllerRoute(

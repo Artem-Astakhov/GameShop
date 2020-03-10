@@ -10,7 +10,10 @@ namespace GameShop.ViewsModels
     {
         public Cart Cart { get; set; }
 
-
+        public void ClearCart()
+        {
+            Cart.CartItems.Clear();
+        }
     }
     
 }
