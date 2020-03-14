@@ -19,5 +19,6 @@ namespace GameShop.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; } 
         public DbSet<User> Users { get; set; }
+        public DbSet<Admin> Admin { get; set; }
      }
 }

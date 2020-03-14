@@ -1,0 +1,25 @@
+﻿@{ 
+    Layout = "_Adminka";
+}
+
+@model AdminModel
+    <div class="panel-body">
+        <h2>Зарегистрированные пользователи</h2>
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Почта</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var user in Model.GetUsers)
+                {
+                    <tr>
+                        <td>@user.Name</td>
+                        <td>@user.Email</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

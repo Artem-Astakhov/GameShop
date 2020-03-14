@@ -9,6 +9,17 @@ namespace GameShop.Models
     {
         public static void Initialize(GameContext db)
         {
+            if (!db.Admin.Any())
+            {
+                db.Admin.AddRange(
+                    new Admin
+                    {
+                        Name = "Admin",
+                        Password = "1111"
+                    });
+                db.SaveChanges();
+            }
+            
             if (!db.Categories.Any())
             {
                 db.Categories.AddRange(               
