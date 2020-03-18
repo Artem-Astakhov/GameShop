@@ -1,4 +1,5 @@
 ﻿using GameShop.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -25,7 +26,7 @@ namespace GameShop.ViewsModels
         public AdminModel(GameContext context)
         {
             this.context = context;
-            GetGames = context.Games.ToList();
+            GetGames = context.Games.Include("Category").ToList();
             GetUsers = context.Users.ToList();
             GetOrders = context.OrderDetails.ToList();
         }

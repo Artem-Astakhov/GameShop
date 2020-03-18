@@ -1,0 +1,62 @@
+﻿@{
+    Layout = "_Adminka";
+}
+
+@model AddGameModel
+
+<h3>Добавление товара</h3>
+<form asp-action="AddGame" asp-controller="Admin" asp-anti-forgery="true" enctype="multipart/form-data">
+    <div class="validation" asp-validation-summary="ModelOnly" />
+    <div>
+        <div>
+            <label asp-for="Name">Введите Имя</label><br />
+            <input type="text" asp-for="Name" />
+            <span asp-validation-for="Name" />
+        </div>
+        <div>
+            <label asp-for="ShortDescription">Краткое описание</label><br />
+            <textarea asp-for="ShortDescription" rows="5" cols="40"></textarea>
+            <span asp-validation-for="ShortDescription" />
+        </div>
+        <div>
+            <label asp-for="LongDescription">Описание</label><br />
+            <textarea asp-for="LongDescription" rows="5" cols="40"></textarea>
+            <span asp-validation-for="LongDescription" />
+        </div>
+        <div>
+            <label asp-for="Prise">Стоимость</label><br />
+            <input type="number" asp-for="Prise" />
+            <span asp-validation-for="Prise" />
+        </div>
+        <div>
+            <label asp-for="IsFavourite">Популярное или нет</label><br />
+            <input type="checkbox" asp-for="IsFavourite" />
+            <span asp-validation-for="IsFavourite"></span>
+        </div>
+        <div>
+            <label asp-for="available">Наличие</label><br />
+            <input type="checkbox" asp-for="available" />
+            <span asp-validation-for="available"></span>
+        </div>
+        <div>
+            <label asp-for="Category">Категория</label><br />
+            <select name="Category">
+                @foreach (var item in Model.GetGames)
+                {
+                    <option value="@item.Category.Id">@item.Category.Name</option>
+                }
+            </select>
+            <span asp-validation-for="Category"></span>
+        </div>
+        <div>
+            <label asp-for="Image">Добавление картинки</label>
+            <input type="file" name="uploadedFile" />
+            <span asp-validation-for="Image"></span>
+        </div>
+        <div>
+            <br />
+            <input type="submit" value="Добавить" class="btn-danger" />
+        </div>
+    </div>
+</form>
+

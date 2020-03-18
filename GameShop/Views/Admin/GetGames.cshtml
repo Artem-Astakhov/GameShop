@@ -1,0 +1,32 @@
+﻿@{ 
+    Layout = "_Adminka";
+}
+
+@model AdminModel
+    <a class="btn btn-danger mb-5" asp-controller="Admin" asp-action="AddGame">Добавить товар</a>
+    <div class="panel-body">
+        <h2>Добавленые товары</h2>
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Ид</th>
+                    <th>Имя</th>
+                    <th>Категория</th>
+                    <th>Цена</th>
+                    <th>Наличие</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var game in Model.GetGames)
+                {
+                    <tr>
+                        <td>@game.GameId</td>
+                        <td>@game.Name</td>
+                        <td>@game.Category.Name</td>
+                        <td>@game.Prise</td>
+                        <td>@game.available</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
