@@ -53,6 +53,14 @@ namespace GameShop.Controllers
 
             return View(obj);
         }
+
+        public IActionResult GamePage(int id)
+        {
+            var item = context.Games.FirstOrDefault(i => i.GameId == id);
+            if (item == null) return RedirectToAction("List");
+
+            return View(item);
+        }
        
     }
 }
