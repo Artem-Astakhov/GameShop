@@ -23,9 +23,6 @@ namespace GameShop.Controllers
 
         public IActionResult Index()
         {
-            var item = cart.GetItems();
-            cart.CartItems = item;
-
             var obj = new CartViewModel
             {
                 Cart = cart
@@ -46,6 +43,15 @@ namespace GameShop.Controllers
             return RedirectToAction("Index");
         }
 
+        public RedirectToActionResult RemoveFromCart(int id)
+        {
+            var item = context.Games.Where(i => i.GameId == id).FirstOrDefault();
+            if (item != null)
+            {
+                cart.RemoveLine(item);
+            }
+            return RedirectToAction("index");
+        }
 
     }
 }

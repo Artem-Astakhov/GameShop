@@ -11,48 +11,30 @@ namespace GameShop.Models
 {
     public class Cart
     {
-        readonly GameContext context;
-        CartViewModel CartViewModel = new CartViewModel();
-        public Cart(GameContext context)
-        {
-            this.context = context;            
-        }
         public string CartId { get; set; }
 
         public List<CartItem> CartItems = new List<CartItem>();
 
-        public static Cart GetCart(IServiceProvider service)
+        public virtual void AddItem(Game game)
         {
-            ISession session = service.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-            var context = service.GetRequiredService<GameContext>();
-            string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
-
-            session.SetString("CartId", cartId);
-
-            return new Cart(context) { CartId = cartId };
-        }
-
-        public void AddItem(Game game)
-        {
-            context.CartItems.Add(
+            
+            CartItems.Add(
                 new CartItem
                 {
                     CartId = CartId,
                     Game = game,
                     Price = game.Prise
-                });
-            context.SaveChanges();
+                });    
         }
 
-        public List<CartItem> GetItems()
+        public virtual void Clear()
         {
-            return context.CartItems.Where(i => i.CartId == CartId).Include(i=>i.Game).ToList();
+            CartItems.Clear();           
         }
 
-        public void Clear()
+        public virtual void RemoveLine(Game game)
         {
-            CartItems.Clear();
-            CartItems = null;
+            CartItems.RemoveAll(i => i.Game.GameId == game.GameId);
         }
     }
 }

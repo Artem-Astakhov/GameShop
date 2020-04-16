@@ -28,7 +28,6 @@ namespace GameShop.Controllers
         public IActionResult Checkout(Order order)
         {
             var createOrder = new CreateOrder(context, cart);
-            cart.CartItems = cart.GetItems();
             if (cart.CartItems == null)
             {
                 ModelState.AddModelError("", "Товары не добавлены");
@@ -37,6 +36,7 @@ namespace GameShop.Controllers
             if (ModelState.IsValid)
             {
                 createOrder.Create(order);
+                cart.Clear();
                 return RedirectToAction("Complite", order);
             }
             return View(order);
@@ -48,10 +48,5 @@ namespace GameShop.Controllers
             return View(order);
         }
 
-        public IActionResult ClearCart()
-        {
-           
-            return RedirectToAction("Index", "Home");
-        }
     }   
 }

@@ -28,15 +28,16 @@ namespace GameShop
             services.AddDbContext<GameContext>(options => options.UseSqlServer(connection));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(sp => Cart.GetCart(sp));
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(option => option.LoginPath = new PathString("/Account/Login"));
 
-            services.AddMvc();
-
             services.AddMemoryCache();
             services.AddSession();
+
+            services.AddMvc();
+
         }
 
     

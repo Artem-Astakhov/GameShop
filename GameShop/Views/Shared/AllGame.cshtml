@@ -6,4 +6,5 @@
         <h6>@Model.ShortDescription</h6>
         <p>Цена: @Model.Prise.ToString("c")</p>
         <p><a class="btn btn-warning" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.GameId">Добавить в корзину</a></p>
+        
     </div>
